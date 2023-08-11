@@ -13,6 +13,7 @@ export const getDevices = async (_req, res) => {
             operatingSystem: device.operatingSystem,
             userId: device.userId,
             userPrincipalName: device.userPrincipalName,
+            userDisplayName: device.userDisplayName,
             emailAddress: device.emailAddress,
             managedDeviceName: device.managedDeviceName,
             totalStorageSpaceInBytes: Math.round(Number(device.totalStorageSpaceInBytes)/(1024*1024*1024)),
@@ -20,6 +21,7 @@ export const getDevices = async (_req, res) => {
             enrolledDateTime: device.enrolledDateTime,
             lastSyncDateTime: device.lastSyncDateTime,
             complianceState: device.complianceState,
+            deviceCategoryDisplayName: device.deviceCategoryDisplayName,
             deviceActionResults: device.deviceActionResults,
         };
     });
