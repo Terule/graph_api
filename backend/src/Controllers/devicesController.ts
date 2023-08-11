@@ -2,13 +2,25 @@ import { getGraphData } from "../Utils/Graph";
 
 export const getDevices = async (_req, res) => {
     try {
-      const response = await getGraphData("devices");
+      const response = await getGraphData("deviceManagement/managedDevices");
       const devices = response.value.map((device) => {
         return {
             id: device.id,
-            deviceName: device.displayName,
+            deviceName: device.deviceName,
             manufacturer: device.manufacturer,
+            model: device.model,
+            serialNumber: device.serialNumber,
             operatingSystem: device.operatingSystem,
+            userId: device.userId,
+            userPrincipalName: device.userPrincipalName,
+            emailAddress: device.emailAddress,
+            managedDeviceName: device.managedDeviceName,
+            totalStorageSpaceInBytes: Math.round(Number(device.totalStorageSpaceInBytes)/(1024*1024*1024)),
+            physicalMemoryInBytes: device.physicalMemoryInBytes,
+            enrolledDateTime: device.enrolledDateTime,
+            lastSyncDateTime: device.lastSyncDateTime,
+            complianceState: device.complianceState,
+            deviceActionResults: device.deviceActionResults,
         };
     });
 
@@ -20,7 +32,7 @@ export const getDevices = async (_req, res) => {
 
 export const getDevice = async (req, res) => {
     try {
-      const response = await getGraphData("devices", req.params.id);
+      const response = await getGraphData("deviceManagement/managedDevices", req.params.id);
       const device = {
         id: response.id,
         deviceName: response.displayName,
